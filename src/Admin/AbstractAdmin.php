@@ -2297,7 +2297,7 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
 
         if ($this->hasParentFieldDescription()) {
             $parentAdmin = $this->getParentFieldDescription()->getAdmin();
-            $parentObject = $parentAdmin->getObject($this->getRequest()->get($parentAdmin->getIdParameter()));
+            $parentObject = $this->hasRequest() ? $parentAdmin->getObject($this->getRequest()->get($parentAdmin->getIdParameter())) : null;
 
             if (null !== $parentObject) {
                 ObjectManipulator::setObject($object, $parentObject, $this->getParentFieldDescription());
